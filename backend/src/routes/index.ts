@@ -1,8 +1,8 @@
 import express from 'express'
-// import newRoutes from './new'
+import newRoutes from './details'
 
 const router = express.Router()
 
-// newRoutes(router)
+newRoutes(router)
 
 export default router
