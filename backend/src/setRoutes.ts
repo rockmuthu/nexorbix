@@ -1,14 +1,14 @@
-import { Application, Response } from 'express'
+import { Application, Request, Response } from 'express'
 import routes from './routes/index'
 
 const healthRoute = (app: Application): void => {
-    app.get('/health', (res: Response) => {
+    app.get('/health', (_req: Request, res: Response) => {
         res.status(200).send()
     })
 }
 
 const nonExistingRoute = (app: Application): void => {
-    app.use((res: Response) => {
+    app.use((_req: Request, res: Response) => {
         res.status(404).send("Sorry can't find that!!!!")
     })
 }

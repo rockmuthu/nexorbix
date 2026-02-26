@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(compression())
 app.use(cors())
-app.options('*', cors())
+app.options('*splat', cors())
 
 setRoutes(app)
 
