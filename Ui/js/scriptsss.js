@@ -1,80 +1,4 @@
-const BACKEND_URL = "http://localhost:5000/api";
-
-/* ==========================================
-   FORM SUBMIT HELPER
-========================================== */
-function showSuccess(form) {
-  const oldMessage = form.querySelector(".success-message");
-  if (oldMessage) oldMessage.remove();
-
-  const successMessage = document.createElement("div");
-  successMessage.classList.add("success-message");
-  successMessage.innerText =
-    "✅ Submitted successfully! Our team will contact you soon.";
-  form.appendChild(successMessage);
-  form.reset();
-
-  setTimeout(() => successMessage.remove(), 4000);
-}
-
-function showError(field, message) {
-  field.style.border = "2px solid #f87171";
-
-  const error = document.createElement("small");
-  error.classList.add("error-message");
-  error.style.color = "#f87171";
-  error.style.display = "block";
-  error.style.marginTop = "5px";
-  error.innerText = message;
-
-  field.parentNode.appendChild(error);
-}
-
-function getFormData(form) {
-  const id = form.id;
-
-  // home.html form
-  if (id === "homeForm") {
-    return {
-      endpoint: `${BACKEND_URL}/create`,
-      data: {
-        name: form.querySelector("input[name='name']")?.value.trim(),
-        email: form.querySelector("input[name='email']")?.value.trim(),
-        description: form.querySelector("textarea[name='message']")?.value.trim(),
-      },
-    };
-  }
-
-  // contactus.html form
-  if (id === "contactForm") {
-    return {
-      endpoint: `${BACKEND_URL}/create_contact`,
-      data: {
-        name: form.querySelector("input[name='name']")?.value.trim(),
-        email: form.querySelector("input[name='email']")?.value.trim(),
-        subject: form.querySelector("input[name='subject']")?.value.trim(),
-        message: form.querySelector("textarea[name='message']")?.value.trim(),
-      },
-    };
-  }
-
-  // projectonboard.html form
-  if (id === "projectForm") {
-    return {
-      endpoint: `${BACKEND_URL}/create_project`,
-      data: {
-        name: form.querySelector("input[name='name']")?.value.trim(),
-        email: form.querySelector("input[name='email']")?.value.trim(),
-        companyName: form.querySelector("input[name='company']")?.value.trim(),
-        projectType: form.querySelector("select[name='projectType']")?.value,
-        estimatedBudget: form.querySelector("select[name='Estimated Budjet (₹)']")?.value,
-        others: form.querySelector("textarea[name='requirements']")?.value.trim(),
-      },
-    };
-  }
-
-  return null;
-}
+console.log("AI Web Solutions - Main Script Loaded");
 
 /* ==========================================
    DOM READY
@@ -108,14 +32,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (value === "") {
           showError(field, "This field is required");
           isValid = false;
-          return;
+          return; // stop further validation for this field
         }
 
         // 2️⃣ Name validation
         if (field.name === "name") {
           const namePattern = /^[A-Za-z\s]{3,}$/;
+
           if (!namePattern.test(value)) {
-            showError(field, "Name should contain only letters and at least 3 characters");
+            showError(
+              field,
+              "Name should contain only letters and at least 3 characters",
+            );
             isValid = false;
           }
         }
@@ -123,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 3️⃣ Email validation
         if (field.type === "email") {
           const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
           if (!emailPattern.test(value)) {
             showError(field, "Enter a valid email address");
             isValid = false;
@@ -141,29 +70,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!isValid) return;
 
-      // Get form data and endpoint
-      const formInfo = getFormData(form);
-
-      if (!formInfo) {
-        console.error("Form type not recognized");
-        return;
+      const formData = {
+        name: form.querySelector("input[name='name']").value.trim(),
+        email: form.querySelector("input[name='email']").value.trim(),
+        description: form
+          .querySelector("textarea[name='message']")
+          .value.trim(),
       }
 
-      // API Call
-      fetch(formInfo.endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formInfo.data),
-      })
-        .then((res) => {
-          if (res.ok) {
-            showSuccess(form);
-          } else {
-            alert("Something went wrong. Please try again.");
-          }
-        })
-        .catch(() => alert("Server unreachable. Please try again later."));
+      // Remove old success message
+      const oldMessage = form.querySelector(".success-message");
+      if (oldMessage) oldMessage.remove();
+
+      const successMessage = document.createElement("div");
+      successMessage.classList.add("success-message");
+      successMessage.innerText =
+        "✅ Submitted successfully! Our team will contact you soon.";
+
+      form.appendChild(successMessage);
+      console.log(formData);
+      
+      form.reset();
+
+      setTimeout(() => {
+        successMessage.remove();
+      }, 4000);
     });
+
+    // Error display function
+    function showError(field, message) {
+      field.style.border = "2px solid #f87171";
+
+      const error = document.createElement("small");
+      error.classList.add("error-message");
+      error.style.color = "#f87171";
+      error.style.display = "block";
+      error.style.marginTop = "5px";
+      error.innerText = message;
+
+      field.parentNode.appendChild(error);
+    }
   });
 
   /* ==========================================
@@ -181,7 +127,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (targetElement) {
           e.preventDefault();
-          targetElement.scrollIntoView({ behavior: "smooth" });
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+          });
         }
       }
     });
@@ -196,11 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   navLinks.forEach((link) => {
     const linkPage = link.getAttribute("href");
+
     if (linkPage === currentPage) {
       link.classList.add("active-link");
     }
   });
-
   // Magnetic effect for nav & CTA buttons
   const magneticElements = document.querySelectorAll(
     ".main-nav a, .primary-cta, .secondary-cta",
@@ -211,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
+
       el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
     });
 
@@ -225,17 +174,20 @@ document.addEventListener("DOMContentLoaded", function () {
     hero.addEventListener("mousemove", (e) => {
       const x = (window.innerWidth / 2 - e.pageX) / 40;
       const y = (window.innerHeight / 2 - e.pageY) / 40;
+
       hero.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
     });
   }
-
   // Subtle body background parallax
+  /* Subtle body background parallax */
   function updateBackground(x = 0, y = 0) {
     document.body.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
   }
 
+  /* Set initial position immediately */
   updateBackground(0, 0);
 
+  /* Mouse move effect */
   document.addEventListener("mousemove", (e) => {
     const x = (window.innerWidth / 2 - e.clientX) / 100;
     const y = (window.innerHeight / 2 - e.clientY) / 100;
@@ -255,6 +207,9 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ===============================
    COUNTER ANIMATION
 ================================= */
+  /* ===============================
+   COUNTER FIXED VERSION
+================================= */
 
   const counters = document.querySelectorAll(".counter");
 
@@ -263,11 +218,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const target = parseInt(counter.getAttribute("data-target"));
       let count = 0;
 
-      const speed = 200;
+      const speed = 200; // lower = faster
       const increment = target / speed;
 
       const updateCount = () => {
         count += increment;
+
         if (count < target) {
           counter.innerText = Math.floor(count);
           requestAnimationFrame(updateCount);
@@ -292,6 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       { threshold: 0.3 },
     );
+
     observer.observe(statsSection);
   }
 
@@ -303,8 +260,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const revealOnScroll = () => {
     const triggerBottom = window.innerHeight * 0.85;
+
     revealElements.forEach((section) => {
       const sectionTop = section.getBoundingClientRect().top;
+
       if (sectionTop < triggerBottom) {
         section.classList.add("active");
       }
@@ -312,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   revealElements.forEach((el) => el.classList.add("reveal"));
+
   window.addEventListener("scroll", revealOnScroll);
 
   /* ===============================
@@ -340,8 +300,13 @@ document.addEventListener("DOMContentLoaded", function () {
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+
+        if (this.x > canvas.width || this.x < 0) {
+          this.speedX *= -1;
+        }
+        if (this.y > canvas.height || this.y < 0) {
+          this.speedY *= -1;
+        }
       }
 
       draw() {
@@ -361,10 +326,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       particlesArray.forEach((particle) => {
         particle.update();
         particle.draw();
       });
+
       requestAnimationFrame(animate);
     }
 
@@ -377,7 +344,6 @@ document.addEventListener("DOMContentLoaded", function () {
       init();
     });
   }
-
   const hamburger = document.getElementById("hamburger");
   const mainNav = document.getElementById("mainNav");
   const overlay = document.getElementById("navOverlay");
@@ -407,14 +373,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   scrollBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   });
 });
-
 // Preloader Hide
 window.addEventListener("load", function () {
   const preloader = document.getElementById("preloader");
   setTimeout(() => {
     preloader.classList.add("hide");
-  }, 2000);
+  }, 2000); // match loading animation time
 });
