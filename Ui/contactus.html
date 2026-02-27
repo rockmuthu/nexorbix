@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Us | NEXORBIZS</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Contact AI Web Solutions for AI-powered website development and digital solutions.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -27,8 +29,13 @@
 
         <div class="header-top">
             <div class="logo">
-                <h2>NEXORBIZS</h2>
-                <h3>Designing the Digital Future</h3>
+                <a href="home.html" class="logo-container">
+                    <img src="images/logo.jpg" alt="NEXORBIZS" class="site-logo">
+                    <div class="logo-text">
+                        <h2>NEXORBIZS</h2>
+                        <h3>Designing the Digital Future</h3>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -37,12 +44,12 @@
     
         <nav class="main-nav" id="mainNav">
             <a href="home.html">Home</a>
-            <a href="aboutus.html">About Us</a>
-            <a href="ourservices.html">Our Services</a>
             <a href="technologies.html">Technologies</a>
+            <a href="ourservices.html">Our Services</a>
             <a href="contactus.html" class="active-link">Contact Us</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Sign Up</a>
+            <a href="aboutus.html">About Us</a>
+            <!--<a href="404.html">Login</a>
+            <a href="404.html">Sign Up</a> -->
             <a href="projectonboard.html" class="mobile-cta">
                 Get Consultation
             </a>
@@ -74,31 +81,38 @@
             <!-- CONTACT INFO CARD -->
             <div class="card glass-card">
                 <h3>Company Information</h3>
-                <p><strong>Email:</strong> support@aiwebsolutions.com</p>
-                <p><strong>Phone:</strong> +91 98765 43210</p>
+                <p><strong>Email:</strong> support@nexorbizs.com</p>
+                <!-- <p><strong>Phone:</strong> +91 98765 43210</p> -->
                 <p><strong>Location:</strong> Tamil Nadu, India</p>
-                <p>Business Hours: Mon – Fri, 9 AM – 6 PM</p>
+                <p>Business Hours: Sun - Sat, 8 AM to 8 PM</p>
             </div>
 
             <!-- CONTACT FORM CARD -->
             <div class="card glass-card">
                 <h3>Send Us a Message</h3>
-
+              
                 <form class="contact-form">
-
-                    <input type="text" placeholder="Your Name" required>
-
-                    <input type="email" placeholder="Your Email" required>
-
-                    <input type="text" placeholder="Subject" required>
-
-                    <textarea placeholder="Your Message" rows="4" required></textarea>
-
-                    <button type="submit">Send Message</button>
-
+              
+                  <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                  </div>
+              
+                  <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                  </div>
+              
+                  <div class="form-group">
+                    <input type="text" name="subject" placeholder="Subject" required>
+                  </div>
+              
+                  <div class="form-group">
+                    <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                  </div>
+              
+                  <button type="submit">Send Message</button>
+              
                 </form>
-
-            </div>
+              </div>
 
         </div>
 
@@ -107,12 +121,40 @@
 
     <!-- FOOTER -->
     <footer class="site-footer">
-        <p>© 2026 NexorBizs Technologies. All Rights Reserved.</p>
+
+        <div class="footer-content">
+      
+          <!-- Clickable Text Links -->
+          <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+          </div>
+      
+          <!-- Social Icons -->
+          <div class="footer-social">
+            <a href="https://instagram.com/nexorbizs_technologies" target="_blank" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+      
+            <a href="https://x.com/nexorbizs_tech" target="_blank" aria-label="X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+    
+            <a href="404.html" target="_blank">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+      
+          <p>© 2026 NexorBizs Technologies.</p>
         <p>Tamil Nadu, India</p>
-    </footer>
+      
+        </div>
+      
+      </footer>
 
 </div>
 
 <script src="js/script.js"></script>
+<button id="scrollTopBtn">↑</button>
 </body>
 </html>

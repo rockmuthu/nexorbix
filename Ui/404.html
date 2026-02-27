@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - Page Not Found | NexorBizs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico">
+    
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .error-container {
+            padding: 60px;
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 500px;
+            animation: floatBox 6s ease-in-out infinite;
+        }
+
+        .error-container h1 {
+            font-size: 120px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .error-container h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .error-container p {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .error-container a {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .error-container a:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(139,92,246,0.5);
+        }
+
+        @keyframes floatBox {
+            0%,100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .error-container {
+                padding: 40px 25px;
+            }
+
+            .error-container h1 {
+                font-size: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>Oops! Page Is UnderConstruction</h2>
+        <p>The page you’re looking for is Yet to Publish.</p>
+        <a href="home.html">Go Back Home</a>
+    </div>
+
+</body>
+</html>

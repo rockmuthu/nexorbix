@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>About Us | NEXORBIZS</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="About NEXORBIZS Technologies - Designing the Digital Future.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -26,8 +28,13 @@
 
         <div class="header-top">
             <div class="logo">
-                <h2>NEXORBIZS</h2>
-                <h3>Designing the Digital Future</h3>
+                <a href="home.html" class="logo-container">
+                    <img src="images/logo.jpg" alt="NEXORBIZS" class="site-logo">
+                    <div class="logo-text">
+                        <h2>NEXORBIZS</h2>
+                        <h3>Designing the Digital Future</h3>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -35,12 +42,12 @@
     
         <nav class="main-nav" id="mainNav">
             <a href="home.html">Home</a>
-            <a href="aboutus.html" class="active-link">About Us</a>
-            <a href="ourservices.html">Our Services</a>
             <a href="technologies.html">Technologies</a>
+            <a href="ourservices.html">Our Services</a>
             <a href="contactus.html">Contact Us</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Sign Up</a>
+            <a href="aboutus.html" class="active-link">About Us</a>
+            <!--<a href="404.html">Login</a>
+            <a href="404.html">Sign Up</a> -->
             <a href="projectonboard.html" class="mobile-cta">
                 Get Consultation
             </a>
@@ -53,7 +60,7 @@
     <div class="section-container">
     <div class="hero-content glass-card">
         <h1>Who We Are</h1>
-        <p>We build modern, scalable, and performance-driven digital platforms for ambitious businesses.</p>
+        <p><span class="brand-name">NexorBizs</span> Technologies is a forward-thinking digital solutions company crafting scalable, high-performance platforms for ambitious and growth-driven businesses.</p>
     </div>
 </div>
 </section>
@@ -62,9 +69,9 @@
 <section class="about-page-section glass-card">
     <h2>Our Story</h2>
     <p>
-        <span class="brand-name">NexorBizs</span> Technologies was founded with a vision to design the digital future.
-        We specialize in crafting scalable websites that combine modern design,
-        structured architecture, and measurable performance.
+        <span class="brand-name">NexorBizs</span> Technologies was established with a mission to shape the digital future through innovation and precision.
+
+        We specialize in developing scalable websites and digital solutions that blend clean design, strong technical architecture, and performance-driven development — empowering businesses to grow with confidence in a competitive digital landscape.
     </p>
 </section>
 
@@ -74,15 +81,15 @@
     <div class="service-cards">
         <div class="card glass-card">
             <h3>Our Vision</h3>
-            <p>To become a trusted digital engineering partner for businesses globally.</p>
+            <p>To become a trusted digital engineering partner for businesses worldwide — delivering reliable, scalable, and future-ready technology solutions.</p>
         </div>
         <div class="card glass-card">
             <h3>Our Mission</h3>
-            <p>To deliver secure, scalable, and high-performance websites that drive growth.</p>
+            <p>To design and develop secure, high-performance websites and digital platforms that empower businesses to grow, operate efficiently, and compete with confidence.</p>
         </div>
         <div class="card glass-card">
             <h3>Our Approach</h3>
-            <p>Clarity, performance, and long-term value in every project we build.</p>
+            <p>We focus on clarity, structured development, performance optimization, and long-term value — ensuring every project we build is reliable, scalable, and built for sustainable growth.</p>
         </div>
     </div>
 </section>
@@ -102,10 +109,10 @@
 <section class="services-section">
     <h2>Our Process</h2>
     <div class="service-cards">
-        <div class="card glass-card"><h3>1. Discovery</h3><p>Understanding business goals and requirements.</p></div>
-        <div class="card glass-card"><h3>2. Design</h3><p>Creating modern UI/UX prototypes.</p></div>
-        <div class="card glass-card"><h3>3. Development</h3><p>Building scalable and secure platforms.</p></div>
-        <div class="card glass-card"><h3>4. Deployment</h3><p>Launching and optimizing for performance.</p></div>
+        <div class="card glass-card"><h3>1. Discovery & Planning</h3><p>We begin by understanding your business goals, target audience, and technical requirements to create a clear, strategic roadmap for success.</p></div>
+        <div class="card glass-card"><h3>2. Design</h3><p>Our team crafts modern, intuitive UI/UX designs that focus on usability, brand identity, and seamless user experience.</p></div>
+        <div class="card glass-card"><h3>3. Development</h3><p>We build secure, scalable, and high-performance digital platforms using clean architecture and best development practices.</p></div>
+        <div class="card glass-card"><h3>4. Deployment & optimization</h3><p>After rigorous testing, we launch your platform and optimize it for speed, performance, and long-term reliability.</p></div>
     </div>
 </section>
 
@@ -113,11 +120,11 @@
 <section class="services-section">
     <h2>Industries We Serve</h2>
     <div class="service-cards">
-        <div class="card glass-card"><h3>E-Commerce</h3></div>
-        <div class="card glass-card"><h3>Education</h3></div>
-        <div class="card glass-card"><h3>Healthcare</h3></div>
-        <div class="card glass-card"><h3>Startups</h3></div>
-        <div class="card glass-card"><h3>SMEs</h3></div>
+        <div class="card glass-card"><h3>🛒 E-Commerce</h3></div>
+        <div class="card glass-card"><h3>🎓 Education</h3></div>
+        <div class="card glass-card"><h3>🏥 Healthcare</h3></div>
+        <div class="card glass-card"><h3>🚀 Startups</h3></div>
+        <div class="card glass-card"><h3>🏢 SMEs (Small & Medium Enterprises)</h3></div>
     </div>
 </section>
 
@@ -126,12 +133,20 @@
     <h2>Leadership Team</h2>
 
     <div class="team-member glass-card">
-        <div class="team-photo"></div>
+
+        <div class="team-member-image">
+            <img src="images/ceo.jpg" alt="CEO">
+        </div>
+    
         <div class="team-content">
             <h4 class="team-name">Gokulnath Madeshwaran</h4>
             <h3>Founder & Chief Executive Officer</h3>
-            <p>Leading strategic direction and digital innovation at <span class="brand-name">NexorBizs</span>.</p>
+            <p>
+              Leading strategic direction and digital innovation at 
+              <span class="brand-name">NexorBizs</span>.
+            </p>
         </div>
+    
     </div>
 
      <!-- <div class="team-member glass-card">
@@ -158,17 +173,17 @@
     <div class="service-cards">
   
       <div class="card glass-card">
-        <h3 class="counter" data-target="25">0</h3>
+        <h3 class="counter" data-target="1">0</h3>
         <p>Happy Clients</p>
       </div>
   
       <div class="card glass-card">
-        <h3 class="counter" data-target="99">0</h3>
+        <h3 class="counter" data-target="1">0</h3>
         <p>Client Satisfaction</p>
       </div>
   
       <div class="card glass-card">
-        <h3 class="counter" data-target="24">0</h3>
+        <h3 class="counter" data-target="23">0</h3>
         <p>Support Availability</p>
       </div>
   
@@ -192,6 +207,7 @@
         <div class="card glass-card"><h3>Expand Digital Services</h3></div>
         <div class="card glass-card"><h3>Strengthen Client Partnerships</h3></div>
         <div class="card glass-card"><h3>Adopt Modern Web Standards</h3></div>
+        <div class="card glass-card"><h3>Launch Innovative In-House Products</h3></div>
     </div>
 </section>
 
@@ -210,10 +226,38 @@
 </div>
 
 <footer class="site-footer">
-    <p>© 2026 NexorBizs Technologies. All Rights Reserved.</p>
+
+    <div class="footer-content">
+  
+      <!-- Clickable Text Links -->
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+  
+      <!-- Social Icons -->
+      <div class="footer-social">
+        <a href="https://instagram.com/nexorbizs_technologies" target="_blank" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+  
+        <a href="https://x.com/nexorbizs_tech" target="_blank" aria-label="X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+
+        <a href="404.html" target="_blank">
+            <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </div>
+  
+      <p>© 2026 NexorBizs Technologies.</p>
     <p>Tamil Nadu, India</p>
-</footer>
+  
+    </div>
+  
+  </footer>
 
 <script src="js/script.js"></script>
+<button id="scrollTopBtn">↑</button>
 </body>
 </html>

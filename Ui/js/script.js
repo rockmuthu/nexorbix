@@ -17,62 +17,94 @@ document.addEventListener("DOMContentLoaded", function () {
 
     forms.forEach(form => {
 
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const requiredFields = form.querySelectorAll(
-                "input[required], textarea[required], select[required]"
-            );
-
-            let isValid = true;
-
-            // Reset previous borders
-            requiredFields.forEach(field => {
-                field.style.border = "none";
-            });
-
-            // Check empty fields
-            requiredFields.forEach(field => {
-                if (field.value.trim() === "") {
-                    field.style.border = "2px solid red";
-                    isValid = false;
-                }
-            });
-
-            // Signup password match validation
-            const passwordFields = form.querySelectorAll("input[type='password']");
-            if (passwordFields.length === 2) {
-                if (passwordFields[0].value !== passwordFields[1].value) {
-                    passwordFields[1].style.border = "2px solid red";
-                    alert("Passwords do not match!");
-                    isValid = false;
-                }
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        let isValid = true;
+    
+        const requiredFields = form.querySelectorAll(
+            "input[required], textarea[required], select[required]"
+        );
+    
+        // Remove old error messages
+        form.querySelectorAll(".error-message").forEach(el => el.remove());
+    
+        requiredFields.forEach(field => {
+          field.style.border = "";
+      
+          const value = field.value.trim();
+      
+          // 1️⃣ Required check first
+          if (value === "") {
+              showError(field, "This field is required");
+              isValid = false;
+              return; // stop further validation for this field
+          }
+      
+          // 2️⃣ Name validation
+          if (field.name === "name") {
+              const namePattern = /^[A-Za-z\s]{3,}$/;
+      
+              if (!namePattern.test(value)) {
+                  showError(field, "Name should contain only letters and at least 3 characters");
+                  isValid = false;
+              }
+          }
+      
+          // 3️⃣ Email validation
+          if (field.type === "email") {
+              const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+              if (!emailPattern.test(value)) {
+                  showError(field, "Enter a valid email address");
+                  isValid = false;
+              }
+          }
+      });
+    
+        // Password match validation
+        const passwordFields = form.querySelectorAll("input[type='password']");
+        if (passwordFields.length === 2) {
+            if (passwordFields[0].value !== passwordFields[1].value) {
+                showError(passwordFields[1], "Passwords do not match");
+                isValid = false;
             }
-
-            if (!isValid) {
-                alert("Please fill all required fields correctly.");
-                return;
-            }
-
-            // Remove old success message
-            const oldMessage = form.querySelector(".success-message");
-            if (oldMessage) oldMessage.remove();
-
-            // Create success message
-            const successMessage = document.createElement("div");
-            successMessage.classList.add("success-message");
-            successMessage.innerText =
-                "✅ Submitted successfully! Our team will contact you soon.";
-
-            form.reset();
-            form.appendChild(successMessage);
-
-            setTimeout(() => {
-                successMessage.remove();
-            }, 4000);
-        });
-
+        }
+    
+        if (!isValid) return;
+    
+        // Remove old success message
+        const oldMessage = form.querySelector(".success-message");
+        if (oldMessage) oldMessage.remove();
+    
+        const successMessage = document.createElement("div");
+        successMessage.classList.add("success-message");
+        successMessage.innerText =
+            "✅ Submitted successfully! Our team will contact you soon.";
+    
+        form.appendChild(successMessage);
+        form.reset();
+    
+        setTimeout(() => {
+            successMessage.remove();
+        }, 4000);
     });
+    
+    // Error display function
+    function showError(field, message) {
+        field.style.border = "2px solid #f87171";
+    
+        const error = document.createElement("small");
+        error.classList.add("error-message");
+        error.style.color = "#f87171";
+        error.style.display = "block";
+        error.style.marginTop = "5px";
+        error.innerText = message;
+    
+        field.parentNode.appendChild(error);
+    }
+      });
+    
 
 
     /* ==========================================
@@ -323,6 +355,23 @@ if (hamburger && mainNav && overlay) {
   });
 
 }
+
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 400) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+});
+
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
 
 });
 // Preloader Hide
