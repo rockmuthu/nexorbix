@@ -1,10 +1,12 @@
+console.log("AI Web Solutions - Main Script Loaded");
+
 const BACKEND_URL = "http://localhost:5000/api";
 
 /* ==========================================
    FORM SUBMIT HELPER
 ========================================== */
 function showSuccess(form) {
-  const oldMessage = form.querySelector(".success-message");
+  const oldMessage = form.querySelector(".success-message, .error-banner");
   if (oldMessage) oldMessage.remove();
 
   const successMessage = document.createElement("div");
@@ -15,6 +17,21 @@ function showSuccess(form) {
   form.reset();
 
   setTimeout(() => successMessage.remove(), 4000);
+}
+
+function showFormError(form, message) {
+  const oldMessage = form.querySelector(".success-message, .error-banner");
+  if (oldMessage) oldMessage.remove();
+
+  const errorMessage = document.createElement("div");
+  errorMessage.classList.add("error-banner");
+  errorMessage.style.color = "#f87171";
+  errorMessage.style.marginTop = "10px";
+  errorMessage.style.fontWeight = "bold";
+  errorMessage.innerText = message;
+  form.appendChild(errorMessage);
+
+  setTimeout(() => errorMessage.remove(), 4000);
 }
 
 function showError(field, message) {
@@ -149,7 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // API Call
+      // Submit button disable — double submit avoid
+      const submitBtn = form.querySelector("button[type='submit']");
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
+      }
+
+      // API Call — success message only after 200
       fetch(formInfo.endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -159,10 +183,16 @@ document.addEventListener("DOMContentLoaded", function () {
           if (res.ok) {
             showSuccess(form);
           } else {
-            alert("Something went wrong. Please try again.");
+            showFormError(form, "❌ Something went wrong. Please try again.");
           }
         })
-        .catch(() => alert("Server unreachable. Please try again later."));
+        .catch(() => showFormError(form, "❌ Something went wrong. Please try again."))
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = submitBtn.getAttribute("data-label") || "Submit";
+          }
+        });
     });
   });
 
